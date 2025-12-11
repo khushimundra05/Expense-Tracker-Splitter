@@ -17,3 +17,7 @@ Accept: application/json
 
 # Test GET user by ID
 GET http://localhost:8080/user/1
+
+###
+# User Not Found exception
+GET http://localhost:8080/user/99

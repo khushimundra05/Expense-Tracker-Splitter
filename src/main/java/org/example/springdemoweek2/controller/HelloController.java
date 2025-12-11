@@ -36,6 +36,7 @@ public class HelloController {
 //    }
     //@RequestBody converts JSON from request and converts it to the required (here - User) object
     //using response entity : allows to return proper HTTP body with status code & objects
+    @PostMapping("/user")
     public ResponseEntity<User> createUser(@Valid @RequestBody UserRequestDto userDto) {
         User createdUser = userService.createUser(userDto.getId(), userDto.getName());
         return ResponseEntity.status(201).body(createdUser);
