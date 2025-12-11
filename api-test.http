@@ -1,0 +1,19 @@
+### Test GET
+GET http://localhost:8080/hello
+
+###
+
+# Test POST user creation
+POST http://localhost:8080/user
+Content-Type: application/json
+Accept: application/json
+
+{
+  "id": 1,
+  "name": "Khushi"
+}
+
+###
+
+# Test GET user by ID
+GET http://localhost:8080/user/1
