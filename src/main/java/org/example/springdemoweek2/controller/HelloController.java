@@ -7,6 +7,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import jakarta.validation.Valid;
 
+import java.util.List;
+
 @RestController
 public class HelloController {
 
@@ -41,4 +43,21 @@ public class HelloController {
         User createdUser = userService.createUser(userDto.getId(), userDto.getName());
         return ResponseEntity.status(201).body(createdUser);
     }
+
+    @GetMapping("/users")
+    public List<User> getUsers() {
+        return userService.getAllUsers();
+    }
+
+    @PutMapping("/user/{id}")
+    public User  updateUser(@PathVariable Long id, @RequestBody UserRequestDto userDto) {
+       return userService.updateUser(id,userDto.getName());
+    }
+
+    @DeleteMapping("/user/{id}")
+    public ResponseEntity<String> deleteUser(@PathVariable Long id) {
+        userService.deleteUser(id);
+        return ResponseEntity.ok("User deleted");
+    }
+
 }
