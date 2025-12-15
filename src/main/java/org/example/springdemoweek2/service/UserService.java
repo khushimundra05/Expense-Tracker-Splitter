@@ -44,4 +44,12 @@ public class UserService {
         userRepository.deleteById(id);
     }
 
+    public List<User> findUserByName(String name) {
+        return userRepository.findByName(name);
+    }
+
+    public List<User> searchUsers(String keyword) {
+        return userRepository.findByNameContaining(keyword);
+    }
+
 }

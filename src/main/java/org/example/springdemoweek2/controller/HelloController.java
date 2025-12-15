@@ -60,4 +60,11 @@ public class HelloController {
         return ResponseEntity.ok("User deleted");
     }
 
+    @GetMapping("/users/search")
+    public List<User> searchUsers(@RequestParam String name) {
+        return userService.searchUsers(name);
+    }
+
+
+
 }
