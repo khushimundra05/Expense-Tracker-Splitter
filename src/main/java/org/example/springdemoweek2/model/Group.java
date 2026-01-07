@@ -26,6 +26,8 @@ public class Group {
         this.name = name;
     }
 
+    public Group() {}
+
     // getters & setters
     public Long getId() { return id; }
 
