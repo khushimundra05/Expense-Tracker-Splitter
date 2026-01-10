@@ -3,6 +3,8 @@ package org.example.springdemoweek2.dto;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Positive;
 
+import java.math.BigDecimal;
+
 public class CreateExpenseRequest {
 
     @NotNull
@@ -16,7 +18,7 @@ public class CreateExpenseRequest {
 
     @NotNull
     @Positive
-    private Double amount;
+    private BigDecimal amount;
 
     // getters & setters
     public Long getGroupId() {
@@ -43,11 +45,11 @@ public class CreateExpenseRequest {
         this.description = description;
     }
 
-    public Double getAmount() {
+    public BigDecimal getAmount() {
         return amount;
     }
 
-    public void setAmount(Double amount) {
+    public void setAmount(BigDecimal amount) {
         this.amount = amount;
     }
 }

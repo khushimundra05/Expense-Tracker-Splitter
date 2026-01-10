@@ -1,7 +1,9 @@
 package org.example.springdemoweek2.controller;
 
+import org.example.springdemoweek2.dto.GroupSummaryResponseDto;
 import org.example.springdemoweek2.model.Group;
 import org.example.springdemoweek2.service.GroupService;
+import org.example.springdemoweek2.service.GroupSummaryService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -9,10 +11,13 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/groups")
 public class GroupController {
 
+    private final GroupSummaryService groupSummaryService;
     private final GroupService groupService;
 
-    public GroupController(GroupService groupService) {
+    public GroupController(GroupService groupService,
+                           GroupSummaryService groupSummaryService) {
         this.groupService = groupService;
+        this.groupSummaryService = groupSummaryService;
     }
 
     @PostMapping
@@ -29,5 +34,13 @@ public class GroupController {
         groupService.addUserToGroup(groupId, userId);
         return ResponseEntity.ok("User added to group");
     }
-}
 
+    @GetMapping("/{groupId}/summary")
+    public ResponseEntity<GroupSummaryResponseDto> getGroupSummary(
+            @PathVariable Long groupId) {
+
+        return ResponseEntity.ok(
+                groupSummaryService.getGroupSummary(groupId)
+        );
+    }
+}

@@ -9,6 +9,9 @@ import org.example.springdemoweek2.repository.UserRepository;
 import org.example.springdemoweek2.exception.UserNotFoundException;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 @Service
 public class GroupService {
 
@@ -41,6 +44,19 @@ public class GroupService {
         GroupMember member = new GroupMember(group, user);
         groupMemberRepository.save(member);
     }
+
+
+    public List<User> getUsersOfGroup(Long groupId) {
+
+        Group group = groupRepository.findById(groupId)
+                .orElseThrow(() -> new RuntimeException("Group not found"));
+
+        return group.getMembers()
+                .stream()
+                .map(GroupMember::getUser)
+                .collect(Collectors.toList());
+    }
+
 }
 
 

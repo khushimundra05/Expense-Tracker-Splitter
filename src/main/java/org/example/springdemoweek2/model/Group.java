@@ -1,38 +1,57 @@
 package org.example.springdemoweek2.model;
 
-import jakarta.persistence.*;//allows to import JPA annotations
-import java.util.List;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import jakarta.persistence.*;
 
-@Entity //class should be mapped to a DB table
-@Table(name="groups")
-//public class because Hibernate and Spring need to access it
+import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.Collectors;
+
+@Entity
+@Table(name = "groups")
 public class Group {
+
     @Id
-    @GeneratedValue(strategy=GenerationType.IDENTITY) //auto generate id - auto increment column
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @Column(nullable = false)
     private String name;
 
-    //One group has many members
-    @OneToMany(mappedBy = "group",cascade = CascadeType.ALL)
-    private List<GroupMember> members;
+    // One group has many members
+    @OneToMany(mappedBy = "group", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @JsonIgnore
+    private List<GroupMember> members = new ArrayList<>();
 
-    //One group has many expenses
-    @OneToMany(mappedBy = "group",cascade = CascadeType.ALL)
-    private List<Expense> expenses;
+    // One group has many expenses
+    @OneToMany(mappedBy = "group", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @JsonIgnore
+    private List<Expense> expenses = new ArrayList<>();
+
+    public Group() {}
 
     public Group(String name) {
         this.name = name;
     }
 
-    public Group() {}
+    public Long getId() {
+        return id;
+    }
 
-    // getters & setters
-    public Long getId() { return id; }
+    public String getName() {
+        return name;
+    }
 
-    public String getName() { return name; }
-    public void setName(String name) { this.name = name; }
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public List<GroupMember> getMembers() {
+        return members;
+    }
+
+    public List<Expense> getExpenses() {
+        return expenses;
+    }
+
 }
-
-

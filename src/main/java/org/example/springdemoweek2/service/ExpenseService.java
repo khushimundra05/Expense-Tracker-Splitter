@@ -5,6 +5,8 @@ import org.example.springdemoweek2.repository.*;
 import org.example.springdemoweek2.exception.UserNotFoundException;
 import org.springframework.stereotype.Service;
 
+import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.util.List;
 
 @Service
@@ -35,7 +37,7 @@ public class ExpenseService {
             Long groupId,
             Long paidByUserId,
             String description,
-            Double amount) {
+            BigDecimal amount) {
 
         Group group = groupRepository.findById(groupId)
                 .orElseThrow(() -> new RuntimeException("Group not found"));
@@ -53,7 +55,11 @@ public class ExpenseService {
 
         //calculate split amount
         int totalMembers = members.size();
-        Double splitAmount = amount / totalMembers;
+        BigDecimal splitAmount =amount.divide(
+                BigDecimal.valueOf(members.size()),
+                2,
+                RoundingMode.HALF_UP
+        );
 
         //add the split amount (expense share) for each member in group
         for (GroupMember member : members) {

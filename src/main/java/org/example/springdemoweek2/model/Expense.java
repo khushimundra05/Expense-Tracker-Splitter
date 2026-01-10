@@ -1,5 +1,8 @@
 package org.example.springdemoweek2.model;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
+
+import java.math.BigDecimal;
 import java.util.List;
 
 @Entity
@@ -13,10 +16,11 @@ public class Expense {
     private String description;
 
     @Column(nullable = false)
-    private Double amount;
+    private BigDecimal amount;
 
     @ManyToOne
     @JoinColumn(name = "group_id", nullable = false)
+    @JsonIgnore
     private Group group;
 
     @ManyToOne
@@ -28,7 +32,7 @@ public class Expense {
 
     public Expense() {}
 
-    public Expense(String description, Double amount, Group group, User paidBy) {
+    public Expense(String description, BigDecimal amount, Group group, User paidBy) {
         this.description = description;
         this.amount = amount;
         this.group = group;
@@ -36,4 +40,11 @@ public class Expense {
     }
 
 
+    public User getPaidBy() {
+        return paidBy;
+    }
+
+    public BigDecimal getAmount() {
+        return amount;
+    }
 }
