@@ -11,6 +11,7 @@
   },
   "dependencies": {
     "react": "^19.2.0",
+<<<<<<< HEAD
     "react-dom": "^19.2.0",
     "react-router-dom": "^7.13.0"
   },
@@ -21,12 +22,24 @@
     "@types/react-dom": "^19.2.3",
     "@vitejs/plugin-react": "^5.1.1",
     "autoprefixer": "^10.4.24",
+=======
+    "react-dom": "^19.2.0"
+  },
+  "devDependencies": {
+    "@eslint/js": "^9.39.1",
+    "@types/react": "^19.2.5",
+    "@types/react-dom": "^19.2.3",
+    "@vitejs/plugin-react": "^5.1.1",
+>>>>>>> b10887ff55024b65c8153fdd4b3715f2755bddc2
     "eslint": "^9.39.1",
     "eslint-plugin-react-hooks": "^7.0.1",
     "eslint-plugin-react-refresh": "^0.4.24",
     "globals": "^16.5.0",
+<<<<<<< HEAD
     "postcss": "^8.5.6",
     "tailwindcss": "^4.2.0",
+=======
+>>>>>>> b10887ff55024b65c8153fdd4b3715f2755bddc2
     "vite": "^7.2.4"
   }
 }
