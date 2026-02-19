@@ -1,61 +1,58 @@
+# Expense Tracker & Splitter
 
-# Expense Tracker & Splitter – Full Stack
+A full-stack expense splitting web application built with Spring Boot and React.
 
-A full-stack **Expense Tracker & Splitter** application built while learning **Java Full Stack Development**.
-The backend is implemented using **Spring Boot**, and the frontend is currently under development.
+Users can create groups, add expenses, compute balances, and automatically calculate the minimum number of transactions required to settle debts.
 
 ---
 
-## Project Structure
+## Features
 
+- Create groups and add members
+- Add expenses with payer selection
+- Automatic equal split calculation
+- Net balance computation
+- Greedy algorithm to minimize settlement transactions
+- REST API backend (Spring Boot + JPA)
+- Modern React frontend (Vite + Tailwind CSS)
+
+---
+
+## Settlement Logic
+
+1. Compute net balance per user
+2. Separate creditors and debtors
+3. Greedy matching to minimize number of payments
+4. Repeat until all balances are zero
+
+---
+
+## Tech Stack
+
+Backend: Java, Spring Boot, JPA, Maven  
+Frontend: React, Vite, Tailwind CSS
+
+---
+
+## Run Locally
+
+### Backend
+
+```bash
+cd expense-tracker-backend
+mvn spring-boot:run
 ```
-expense-tracker-backend/
-├── src/main/java        – Backend source code
-├── src/test/java        – Test cases
-├── expense-tracker-frontend/  – Frontend code
-├── pom.xml
-└── README.md
+
+### Frontend
+
+```bash
+cd expense-tracker-frontend
+npm install
+npm run dev
 ```
-
----
-
-## Backend - SpringBoot
-
-**Tech Stack**
-
-* Java
-* Spring Boot
-* Spring MVC
-* Spring Data JPA
-* Maven
-
-**Current Features**
-
-* Expense and group handling logic
-* Balance calculation with safe rounding
-* REST APIs with layered architecture
-
----
-
-## Frontend - React
-
-Frontend is a **work in progress** and will handle:
-
-* API integration with backend
-* Expense input and split views
-* Group summaries and balances
-
----
-
-## Learning Focus
-
-* Spring Boot fundamentals
-* REST API design
-* Maven & Git/GitHub
-* Full-stack project structuring
 
 ---
 
 ## Author
 
-**Khushi Mundra**
+Khushi Mundra
